@@ -72,6 +72,8 @@ function ShowQuestion(question) {
     }
     button.addEventListener("click", SelectAnswer)
     answerbuttonsElement.appendChild(button)
+    
+    
   });
 
 }
@@ -88,6 +90,7 @@ function resetState(){
 function SelectAnswer(e) {
   var selectedbutton = e.target
   var correct = selectedbutton.dataset.correct
+  
   SetStatusClass(document.body, correct)
 Array.from(answerbuttonsElement.children).forEach(button => {
   SetStatusClass(button, button.dataset.correct)
@@ -97,21 +100,16 @@ nextbutton.classList.remove('hide')
 if (shuffledQuestions.length > currentQuestionIndex + 1) {
   nextbutton.classList.remove('hide')
 } else {
-  scoreButton.innerText = scoreButton + 1
-  startbutton.innerText = 'Start Over'
+  }  startbutton.innerText = 'Start Over'
   startbutton.classList.remove('hide')
-  setScore()
-}
-function setScore() {
-  
-  localStorage.setItem("scorecount", scorecounter);
-}
+
 }
 
 function SetStatusClass(element, correct) {
   clearStatusClass(element)
   if (correct) {
     element.classList.add('correct')
+    isCorrect.textContent = scorecounter;
   } else {
     element.classList.add('wrong')
   }
